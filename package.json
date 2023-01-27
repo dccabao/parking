@@ -7,11 +7,19 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "pod-install": "RCT_NEW_ARCH_ENABLED=1 bundle exec pod install"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.11",
+    "native-base": "^3.4.25",
     "react": "18.2.0",
     "react-native": "0.71.1",
+    "react-native-gesture-handler": "^2.9.0",
+    "react-native-reanimated": "^2.14.4",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.19.0",
+    "react-native-svg": "12.1.1",
     "react-native-table-component": "^1.2.2"
   },
   "devDependencies": {
@@ -22,6 +30,7 @@
     "@tsconfig/react-native": "^2.0.3",
     "@types/jest": "^29.4.0",
     "@types/react": "^18.0.27",
+    "@types/react-native-table-component": "^1.2.4",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
     "eslint": "^8.19.0",

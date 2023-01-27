@@ -1,12 +1,15 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {NativeBaseProvider, Box} from 'native-base';
 import Main from './screens/main';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Main />
-    </SafeAreaView>
+    <NativeBaseProvider>
+      <SafeAreaView style={styles.container}>
+        <Main />
+      </SafeAreaView>
+    </NativeBaseProvider>
   );
 };
 

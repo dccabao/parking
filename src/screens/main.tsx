@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {
-  Button,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -8,12 +7,13 @@ import {
   Alert,
 } from 'react-native';
 import {Table, Row, Rows} from 'react-native-table-component';
+import {Select, CheckIcon, Radio, HStack, Button} from 'native-base';
 
 const MAX_ROWS = 5;
 const MAX_COLUMNS = 5;
 const SLOTS = Array(MAX_ROWS)
   .fill(0)
-  .map(row => new Array(MAX_COLUMNS).fill(''));
+  .map(row => new Array(MAX_COLUMNS).fill('x'));
 const ENTRANCE = [
   {name: 'A', row: 0, col: 2},
   {name: 'B', row: 0, col: 6},
@@ -21,6 +21,8 @@ const ENTRANCE = [
 ];
 
 const Main = () => {
+  const [service, setService] = React.useState('');
+  const [value, setValue] = React.useState('S');
   useEffect(() => {
     return () => {};
   }, []);
@@ -33,11 +35,43 @@ const Main = () => {
         <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
           <Rows data={SLOTS} textStyle={styles.text} />
         </Table>
-        <Button
-          title="Park"
-          onPress={() => Alert.alert(`${JSON.stringify(ENTRANCE)}`)}
-          color="#007AFF"
-        />
+        <HStack space={3}>
+          <Radio.Group
+            name="myRadioGroup"
+            accessibilityLabel="favorite number"
+            value={value}
+            onChange={nextValue => {
+              setValue(nextValue);
+            }}>
+            <Radio value="S" my={1}>
+              Small
+            </Radio>
+            <Radio value="M" my={1}>
+              Medium
+            </Radio>
+            <Radio value="L" my={1}>
+              Large
+            </Radio>
+          </Radio.Group>
+          <Select
+            selectedValue={service}
+            minWidth="200"
+            accessibilityLabel="Select Entry Point"
+            placeholder="Select Entry Point"
+            _selectedItem={{
+              bg: 'teal.600',
+              endIcon: <CheckIcon size="5" />,
+            }}
+            mt={1}
+            onValueChange={itemValue => setService(itemValue)}>
+            <Select.Item label="A" value="A" />
+            <Select.Item label="B" value="B" />
+            <Select.Item label="C" value="C" />
+          </Select>
+        </HStack>
+        <Button borderRadius="full" colorScheme="success">
+          PARK
+        </Button>
       </View>
     </>
   );
